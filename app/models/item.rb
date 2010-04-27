@@ -93,8 +93,15 @@ class Item < ActiveRecord::Base
     find_by_issue_id(issue.id).destroy
   end
 
-  def self.find_by_project(project)
-    find(:all, :include => :issue, :conditions => "issues.project_id=#{project.id} and items.parent_id=0", :order => "items.position ASC")
+  def self.find_by_project(project, options={})
+    if options[:hide_closed_items]
+      closed_issue_statuses = IssueStatus.find(:all, :conditions => ["is_closed = ?", true]).collect{|x| x.id}.join(",")
+      additional_conditions = " and issues.status_id IN (#{additional_conditions}) "
+    else
+      additional_conditions = ""
+    end
+
+    find(:all, :include => :issue, :conditions => "issues.project_id=#{project.id} and items.parent_id=0 #{additional_conditions}", :order => "items.position ASC")
   end
 
   def self.remove_with_issue(issue)

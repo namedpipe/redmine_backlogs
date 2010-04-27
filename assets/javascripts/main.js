@@ -14,6 +14,8 @@ RBL.init = function(){
   $("hide_closed_backlogs").observe("click", function() { RBL.storePreferences(); RBL.processClosedBacklogs() });
   $("hide_tasks").checked = (document.cookie.match(/hide_tasks=true/)!=null);
   $("hide_tasks").observe("click", function() { RBL.storePreferences(); RBL.hideOrShowTasks(); });
+  $("hide_closed_items").checked = (document.cookie.match(/hide_closed_items=true/)!=null);
+  $("hide_closed_items").observe("click", function() { RBL.storePreferences(); RBL.hideOrShowClosedItems(); });
   
 	RBL.hideOrShowTasks();
 
@@ -95,6 +97,8 @@ RBL.storePreferences = function(){
   document.cookie = "hide_closed_backlogs=" + ($("hide_closed_backlogs").checked ? "true" : "false") + "; " +
                     "expires=" + expiration.toGMTString();
 	document.cookie =  "hide_tasks=" + ($("hide_tasks").checked ? "true" : "false") + "; " +
+	                 	 "expires=" + expiration.toGMTString();
+	document.cookie =  "hide_closed_items=" + ($("hide_closed_items").checked ? "true" : "false") + "; " +
 	                 	 "expires=" + expiration.toGMTString();
 }
 
