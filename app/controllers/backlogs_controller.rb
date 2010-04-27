@@ -8,8 +8,20 @@ class BacklogsController < ApplicationController
   protect_from_forgery :only => []
 
   def index
-    @hide_closed_backlogs = (cookies[:hide_closed_backlogs] == "true")
-    @hide_closed_items = (cookies[:hide_closed_items] == "true")
+    # Default to hide the closed backlogs
+    if cookies[:hide_closed_backlogs].nil?
+      @hide_closed_backlogs = true
+      cookies[:hide_closed_backlogs] = "true"
+    else
+      @hide_closed_backlogs = (cookies[:hide_closed_backlogs] == "true")
+    end
+    # Default to hide the closed items
+    if cookies[:hide_closed_items].nil?
+      @hide_closed_items = true
+      cookies[:hide_closed_items] = "true"
+    else
+      @hide_closed_items = (cookies[:hide_closed_items] == "true")
+    end
     @hide_tasks = (cookies[:hide_tasks] == "true")
     @items         = Item.find_by_project(@project, :hide_closed_items => @hide_closed_items)
     @item_template = Item.new
