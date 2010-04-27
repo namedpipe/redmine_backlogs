@@ -74,6 +74,7 @@ class Backlog < ActiveRecord::Base
   def self.update_from_version(version)
     backlog = find_by_version_id(version.id) || Backlog.new()
     backlog.version_id = version.id
+    backlog.is_closed? = true if version.closed?
     backlog.save
   end
   
