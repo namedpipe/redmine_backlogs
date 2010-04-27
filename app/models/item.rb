@@ -96,7 +96,7 @@ class Item < ActiveRecord::Base
   def self.find_by_project(project, options={})
     if options[:hide_closed_items]
       closed_issue_statuses = IssueStatus.find(:all, :conditions => ["is_closed = ?", true]).collect{|x| x.id}.join(",")
-      additional_conditions = " and issues.status_id IN (#{closed_issue_statuses}) "
+      additional_conditions = " and issues.status_id NOT IN (#{closed_issue_statuses}) "
     else
       additional_conditions = ""
     end
