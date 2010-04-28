@@ -57,7 +57,11 @@ class Backlog < ActiveRecord::Base
   
 
   def self.find_by_project(project)
-    find(:all, :include => :version, :conditions => "versions.project_id=#{project.id}", :order => "versions.effective_date ASC, versions.id ASC")
+    find(:all, :include => :version, :conditions => "versions.effective_date is null and versions.project_id=#{project.id}", :order => "versions.effective_date ASC, versions.id ASC")
+  end
+
+  def self.find_iterations_by_project(project)
+    find(:all, :include => :version, :conditions => "versions.effective_date is not null and versions.project_id=#{project.id}", :order => "versions.effective_date ASC, versions.id ASC")
   end
   
   def self.update(params)

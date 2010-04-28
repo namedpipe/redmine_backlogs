@@ -26,6 +26,7 @@ class BacklogsController < ApplicationController
     @items         = Item.find_by_project(@project, :hide_closed_items => @hide_closed_items)
     @item_template = Item.new
     @backlogs      = Backlog.find_by_project(@project)
+    @iterations    = Backlog.find_iterations_by_project(@project)
   end
 
   def show
