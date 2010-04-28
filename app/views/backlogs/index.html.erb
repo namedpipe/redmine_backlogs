@@ -37,7 +37,7 @@
   <%- @backlogs.each do |backlog| %>
     <%- unless @hide_closed_backlogs && backlog.is_closed? %>
     <div class="backlog main">
-      <%= render :partial => "header", :locals => { :backlog => backlog } %>
+      <%= render :partial => "header", :locals => { :backlog => backlog, :is_backlog => true } %>
       <ul><%= render :partial => "items/item", :collection => @items.select{|item| item.backlog_id==backlog.id} %></ul>
     </div>
     <% end -%>
