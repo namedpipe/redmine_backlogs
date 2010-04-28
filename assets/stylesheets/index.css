@@ -1,4 +1,4 @@
-#ajax-indicator {
+ #ajax-indicator {
   display: none;
 }
 
@@ -88,7 +88,7 @@
 .backlog.main {
   height: 100%;
   margin: 0px;
-  position: absolute;
+  /* position: absolute; */
   right: 0px;
   top: 0px;
   width: 420px;
