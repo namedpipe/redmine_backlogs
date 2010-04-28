@@ -24,14 +24,14 @@
   <%- @iterations.each do |iteration| %>
     <%- unless @hide_closed_backlogs && iteration.is_closed? %>
     <div class="backlog <%= iteration.is_closed? ? "closed" : "" %>">
-      <%= render :partial => "header", :locals => { :backlog => iteration } %>
+      <%= render :partial => "header", :locals => { :backlog => iteration, :is_backlog => false } %>
       <ul><%= render :partial => "items/item", :collection => @items.select{|item| item.backlog_id==iteration.id} %></ul>
     </div>
     <%- end %>
   <%- end %>
 
   <div class="backlog main">
-    <%= render :partial => "header", :locals => { :backlog => nil } %>
+    <%= render :partial => "header", :locals => { :backlog => nil, :is_backlog => true } %>
     <ul><%= render :partial => "items/item", :collection => @items.select{|item| item.backlog_id==0} %></ul>
   </div>
   <%- @backlogs.each do |backlog| %>
