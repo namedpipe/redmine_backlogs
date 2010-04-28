@@ -109,6 +109,15 @@
   background-color: #efefef;
 }
 
+#iterations {
+	float: right;
+	width: 700px;
+}
+
+#backlogs {
+  width: 420px;
+	float: right;	
+}
 
 .backlog .header {
   background-color: #507AAA;

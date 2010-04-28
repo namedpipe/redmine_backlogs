@@ -21,6 +21,7 @@
 </div>
 
 <div id="backlog_body">
+	<div id="iterations">
   <%- @iterations.each do |iteration| %>
     <%- unless @hide_closed_backlogs && iteration.is_closed? %>
     <div class="backlog <%= iteration.is_closed? ? "closed" : "" %>">
@@ -29,7 +30,9 @@
     </div>
     <%- end %>
   <%- end %>
+  </div>
 
+  <div id="backlogs">
   <div class="backlog main">
     <%= render :partial => "header", :locals => { :backlog => nil, :is_backlog => true } %>
     <ul><%= render :partial => "items/item", :collection => @items.select{|item| item.backlog_id==0} %></ul>
@@ -42,6 +45,7 @@
     </div>
     <% end -%>
   <% end -%>
+  </div>
 </div>
 
 <div id="item_template">
