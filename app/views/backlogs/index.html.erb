@@ -23,7 +23,7 @@
 <div id="backlog_body">
   <%- @iterations.each do |iteration| %>
     <%- unless @hide_closed_backlogs && iteration.is_closed? %>
-    <div class="backlog <%= backlog.is_closed? ? "closed" : "" %>">
+    <div class="backlog <%= iteration.is_closed? ? "closed" : "" %>">
       <%= render :partial => "header", :locals => { :backlog => iteration } %>
       <ul><%= render :partial => "items/item", :collection => @items.select{|item| item.backlog_id==iteration.id} %></ul>
     </div>
